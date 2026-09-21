@@ -9,6 +9,7 @@
 }
 
 :root {
+    font-size: clamp(14px, 2vw, 18px);
     /* Color Variables */
     --primary-color: #667eea;
     --secondary-color: #764ba2;
@@ -60,8 +61,8 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--spacing-sm);
 }
 
-h1 { font-size: 3rem; }
-h2 { font-size: 2.5rem; }
+h1 { font-size: clamp(2rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 2.5rem); }
 h3 { font-size: 1.5rem; }
 
 p {
@@ -80,6 +81,9 @@ a:hover {
 
 /* Navigation Bar - TO BE ENHANCED WITH FLEXBOX */
 #navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     padding: var(--spacing-sm) var(--spacing-md);
     position: sticky;
@@ -89,18 +93,19 @@ a:hover {
 }
 
 .nav-brand {
-    color: var(--white);
-    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
     font-weight: bold;
+    color: white;
 }
 
 .nav-menu {
+    display: flex;
+    gap: 2rem;
     list-style: none;
-}
-
-.nav-menu li {
-    display: inline-block;
-    margin-left: var(--spacing-md);
+    margin: 0;
+    padding: 0;
 }
 
 .nav-link {
@@ -135,10 +140,18 @@ a:hover {
 
 /* Hero Section - TO BE ENHANCED WITH FLEXBOX */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: var(--white);
-    padding: var(--spacing-xl) var(--spacing-md);
     min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.hero-content {
+    max-width: 800px;
 }
 
 .hero-title {
@@ -158,6 +171,14 @@ a:hover {
     margin-bottom: var(--spacing-md);
 }
 
+.hero-buttons {
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-md);
+}
+
 /* Buttons */
 .btn {
     display: inline-block;
@@ -168,6 +189,10 @@ a:hover {
     border: none;
     cursor: pointer;
     text-align: center;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
 }
 
 .btn-primary {
@@ -232,15 +257,18 @@ a:hover {
 
 /* Skills Section - TO BE TRANSFORMED WITH GRID */
 .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
     margin-top: var(--spacing-md);
 }
 
 .skill-card {
-    background: var(--white);
-    padding: var(--spacing-md);
+    background: white;
+    padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    margin-bottom: var(--spacing-md);
     transition: transform 0.3s ease;
 }
 
@@ -270,10 +298,11 @@ a:hover {
 
 .skill-level {
     height: 8px;
-    background: #e2e8f0;
+    background: #e0e0e0;
     border-radius: 4px;
     overflow: hidden;
     margin: var(--spacing-sm) 0;
+    margin-top: 0.5rem;
 }
 
 .skill-progress {
@@ -296,16 +325,24 @@ a:hover {
 
 /* Projects Section - TO BE ENHANCED WITH GRID */
 .projects-grid {
-    margin-top: var(--spacing-md);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 2rem;
+}
+
+/* Featured project spans multiple cells */
+.project-card.featured {
+    grid-column: span 2;
+    grid-row: span 2;
 }
 
 .project-card {
-    background: var(--white);
-    border-radius: 12px;
+    position: relative;
     overflow: hidden;
+    border-radius: 12px;
+    background: white;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    margin-bottom: var(--spacing-md);
-    transition: transform 0.3s ease;
 }
 
 .project-card:hover {
@@ -369,11 +406,17 @@ a:hover {
 }
 
 .project-content {
-    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.5rem;
 }
 
 .project-header {
-    margin-bottom: var(--spacing-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
 }
 
 .project-title {
@@ -395,7 +438,10 @@ a:hover {
 }
 
 .project-tags {
-    margin-top: var(--spacing-sm);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto; /* Pushes tags to bottom */
 }
 
 .project-tag {
